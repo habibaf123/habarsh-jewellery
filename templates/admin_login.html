@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HABARSH | Admin Login</title>
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    #33251b 0%,
+                    #1b1210 32%,
+                    #0e0909 65%,
+                    #070505 100%
+                );
+
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           BACKGROUND GLOW
+        ========================================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            left: 50%;
+            top: 20%;
+
+            transform: translate(-50%, -50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(213, 162, 88, 0.09),
+                    transparent 68%
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           MAIN WRAPPER
+        ========================================= */
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 450px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================================
+           LOGO AREA
+        ========================================= */
+
+        .logo-area {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================================
+           PREMIUM MONOGRAM
+        ========================================= */
+
+        .premium-logo {
+
+            width: 150px;
+            height: 150px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            filter:
+                drop-shadow(
+                    0 0 22px
+                    rgba(213, 162, 88, 0.15)
+                );
+        }
+
+
+        /* =========================================
+           OUTER JEWELLERY RING
+        ========================================= */
+
+        .outer-ring {
+
+            position: absolute;
+
+            width: 118px;
+            height: 118px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(213, 162, 88, 0.75);
+
+            transform: rotate(-18deg);
+
+            box-shadow:
+
+                0 0 0 1px
+                rgba(241, 211, 155, 0.04),
+
+                0 0 30px
+                rgba(213, 162, 88, 0.10),
+
+                inset 0 0 22px
+                rgba(213, 162, 88, 0.05);
+        }
+
+
+        /* second outer ring */
+
+        .outer-ring::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 102px;
+            height: 102px;
+
+            left: 7px;
+            top: 7px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(241, 211, 155, 0.18);
+        }
+
+
+        /* =========================================
+           SMALL ORNAMENT DOTS
+        ========================================= */
+
+        .outer-ring::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: #f1d39b;
+
+            top: -2px;
+            left: 56px;
+
+            box-shadow:
+
+                0 118px 0
+                rgba(241, 211, 155, 0.9),
+
+                59px 59px 0
+                rgba(241, 211, 155, 0.7),
+
+                -59px 59px 0
+                rgba(241, 211, 155, 0.7);
+        }
+
+
+        /* =========================================
+           DIAMOND FRAME
+        ========================================= */
+
+        .diamond-frame {
+
+            position: absolute;
+
+            width: 76px;
+            height: 76px;
+
+            transform: rotate(45deg);
+
+            border:
+
+                1px solid
+                #e7bf79;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.025),
+                    rgba(213,162,88,0.10)
+                );
+
+            box-shadow:
+
+                0 0 25px
+                rgba(213,162,88,0.13),
+
+                inset 0 0 20px
+                rgba(213,162,88,0.08);
+        }
+
+
+        /* inner diamond */
+
+        .diamond-frame::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 56px;
+            height: 56px;
+
+            left: 9px;
+            top: 9px;
+
+            border:
+
+                1px solid
+                rgba(241,211,155,0.30);
+        }
+
+
+        /* =========================================
+           DIAMOND FACETS
+        ========================================= */
+
+        .diamond-facet {
+
+            position: absolute;
+
+            width: 34px;
+            height: 34px;
+
+            border:
+
+                1px solid
+                rgba(241,211,155,0.18);
+
+            transform:
+
+                rotate(45deg);
+        }
+
+
+        /* =========================================
+           DOUBLE H MONOGRAM
+        ========================================= */
+
+        .hh-monogram {
+
+            position: absolute;
+
+            width: 92px;
+            height: 92px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            color: #f4d69d;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+        }
+
+
+        /* LEFT H */
+
+        .hh-left {
+
+            position: absolute;
+
+            font-size: 58px;
+
+            font-weight: 400;
+
+            line-height: 1;
+
+            left: 18px;
+
+            transform: scaleX(0.72);
+
+            color: #f1d39b;
+
+            text-shadow:
+
+                0 0 8px
+                rgba(241,211,155,0.25);
+        }
+
+
+        /* RIGHT H */
+
+        .hh-right {
+
+            position: absolute;
+
+            font-size: 58px;
+
+            font-weight: 400;
+
+            line-height: 1;
+
+            right: 18px;
+
+            transform: scaleX(0.72);
+
+            color: #f1d39b;
+
+            text-shadow:
+
+                0 0 8px
+                rgba(241,211,155,0.25);
+        }
+
+
+        /* =========================================
+           CENTER JEWEL
+        ========================================= */
+
+        .center-jewel {
+
+            position: absolute;
+
+            width: 7px;
+            height: 7px;
+
+            transform: rotate(45deg);
+
+            background: #fff0ca;
+
+            box-shadow:
+
+                0 0 8px
+                rgba(255,230,170,0.8),
+
+                0 0 18px
+                rgba(213,162,88,0.5);
+        }
+
+
+        /* =========================================
+           TOP SPARKLE
+        ========================================= */
+
+        .sparkle {
+
+            position: absolute;
+
+            color: #f5dca7;
+
+            font-family:
+                Georgia,
+                serif;
+
+            line-height: 1;
+
+            text-shadow:
+
+                0 0 10px
+                rgba(241,211,155,0.55);
+        }
+
+
+        .sparkle-one {
+
+            top: 8px;
+            right: 10px;
+
+            font-size: 18px;
+        }
+
+
+        .sparkle-two {
+
+            bottom: 12px;
+            left: 9px;
+
+            font-size: 13px;
+        }
+
+
+        .sparkle-three {
+
+            top: 42px;
+            left: 5px;
+
+            font-size: 8px;
+        }
+
+
+        .sparkle-four {
+
+            bottom: 42px;
+            right: 4px;
+
+            font-size: 7px;
+        }
+
+
+        /* =========================================
+           BRAND NAME
+        ========================================= */
+
+        .logo-name {
+
+            margin-top: 8px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 35px;
+
+            font-weight: 500;
+
+            letter-spacing: 9px;
+
+            color: #f1d39b;
+
+            text-shadow:
+
+                0 0 15px
+                rgba(213,162,88,0.12);
+        }
+
+
+        /* =========================================
+           TAGLINE
+        ========================================= */
+
+        .logo-tagline {
+
+            margin-top: 9px;
+
+            color: #9d9081;
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           LOGIN CARD
+        ========================================= */
+
+        .login-card {
+
+            position: relative;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(30,21,19,0.96),
+                    rgba(15,10,10,0.97)
+                );
+
+            border:
+
+                1px solid
+                rgba(213,162,88,0.28);
+
+            padding:
+
+                40px 36px 35px;
+
+            box-shadow:
+
+                0 30px 80px
+                rgba(0,0,0,0.65),
+
+                inset 0 1px 0
+                rgba(255,255,255,0.025);
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 4px;
+        }
+
+
+        /* top gold line */
+
+        .login-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: -1px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 100px;
+            height: 1px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #e4b96f,
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 10px
+                rgba(213,162,88,0.4);
+        }
+
+
+        /* =========================================
+           LOGIN TITLE
+        ========================================= */
+
+        .login-title {
+
+            text-align: center;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 27px;
+
+            font-weight: 400;
+
+            color: #fff;
+
+            margin-bottom: 8px;
+        }
+
+
+        .login-subtitle {
+
+            text-align: center;
+
+            color: #9f9284;
+
+            font-size: 13px;
+
+            margin-bottom: 31px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-group {
+
+            margin-bottom: 21px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #d5a258;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 9px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9d7950;
+
+            font-size: 14px;
+
+            pointer-events: none;
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            padding:
+                15px
+                15px
+                15px
+                43px;
+
+            background:
+                rgba(8,6,6,0.75);
+
+            border:
+
+                1px solid
+                #46372b;
+
+            color: #fff;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+            border-radius: 2px;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #d5a258;
+
+            box-shadow:
+
+                0 0 0 2px
+                rgba(213,162,88,0.07),
+
+                0 0 18px
+                rgba(213,162,88,0.06);
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #665b51;
+        }
+
+
+        /* =========================================
+           LOGIN BUTTON
+        ========================================= */
+
+        .login-btn {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 16px;
+
+            margin-top: 4px;
+
+            background:
+
+                linear-gradient(
+                    110deg,
+                    #bd8740,
+                    #e1b66e,
+                    #c9944d
+                );
+
+            color: #17100d;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            border-radius: 2px;
+
+            box-shadow:
+
+                0 8px 20px
+                rgba(0,0,0,0.2);
+        }
+
+
+        .login-btn:hover {
+
+            background:
+
+                linear-gradient(
+                    110deg,
+                    #d9a65d,
+                    #f2d093,
+                    #d9a65d
+                );
+
+            transform: translateY(-2px);
+
+            box-shadow:
+
+                0 12px 28px
+                rgba(213,162,88,0.18);
+        }
+
+
+        .login-btn:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        .login-btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =========================================
+           ERROR MESSAGE
+        ========================================= */
+
+        .error-message {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            background:
+                rgba(180,50,50,0.10);
+
+            border:
+                1px solid
+                rgba(220,80,80,0.28);
+
+            color: #ff9b9b;
+
+            font-size: 12px;
+
+            text-align: center;
+
+            line-height: 1.5;
+
+            border-radius: 2px;
+        }
+
+
+        .error-message.show {
+
+            display: block;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .login-footer {
+
+            text-align: center;
+
+            margin-top: 24px;
+
+            color: #655b53;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        .back-home {
+
+            display: inline-block;
+
+            margin-top: 8px;
+
+            color: #d5a258;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+
+        .back-home:hover {
+
+            color: #f1d39b;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .premium-logo {
+
+                width: 130px;
+                height: 130px;
+            }
+
+            .outer-ring {
+
+                width: 105px;
+                height: 105px;
+            }
+
+            .outer-ring::before {
+
+                width: 89px;
+                height: 89px;
+            }
+
+            .diamond-frame {
+
+                width: 68px;
+                height: 68px;
+            }
+
+            .hh-left,
+            .hh-right {
+
+                font-size: 51px;
+            }
+
+            .logo-name {
+
+                font-size: 29px;
+
+                letter-spacing: 6px;
+            }
+
+            .logo-tagline {
+
+                font-size: 8px;
+
+                letter-spacing: 2.5px;
+            }
+
+            .login-card {
+
+                padding:
+                    32px
+                    23px
+                    30px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="login-wrapper">
+
+
+    <!-- =====================================
+         PREMIUM LOGO
+    ====================================== -->
+
+    <div class="logo-area">
+
+        <div class="premium-logo">
+
+
+            <!-- Outer jewellery ring -->
+
+            <div class="outer-ring"></div>
+
+
+            <!-- Diamond -->
+
+            <div class="diamond-frame">
+
+                <div class="diamond-facet"></div>
+
+            </div>
+
+
+            <!-- Double H monogram -->
+
+            <div class="hh-monogram">
+
+                <span class="hh-left">H</span>
+
+                <span class="hh-right">H</span>
+
+            </div>
+
+
+            <!-- Center jewel -->
+
+            <div class="center-jewel"></div>
+
+
+            <!-- Sparkles -->
+
+            <span class="sparkle sparkle-one">✦</span>
+
+            <span class="sparkle sparkle-two">✧</span>
+
+            <span class="sparkle sparkle-three">•</span>
+
+            <span class="sparkle sparkle-four">✦</span>
+
+
+        </div>
+
+
+        <!-- Brand name -->
+
+        <div class="logo-name">
+            HABARSH
+        </div>
+
+
+        <div class="logo-tagline">
+            Jewellery • Love • Gifting
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         LOGIN CARD
+    ====================================== -->
+
+    <div class="login-card">
+
+
+        <h1 class="login-title">
+            Admin Login
+        </h1>
+
+
+        <p class="login-subtitle">
+            Manage your HABARSH jewellery store
+        </p>
+
+
+
+        <form id="loginForm">
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Admin Email
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        ✉
+                    </span>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter admin email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        ◆
+                    </span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginButton"
+            >
+                Login to Dashboard
+            </button>
+
+
+        </form>
+
+
+
+        <!-- ERROR -->
+
+        <div
+            class="error-message"
+            id="errorMessage"
+        ></div>
+
+
+    </div>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <div class="login-footer">
+
+        <p>
+            This area is restricted to HABARSH administrators.
+        </p>
+
+        <a
+            href="/"
+            class="back-home"
+        >
+            ← Back to HABARSH Store
+        </a>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================
+     LOGIN JAVASCRIPT
+========================================= -->
+
+<script>
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        /* Clear previous error */
+
+        errorMessage.classList.remove("show");
+
+        errorMessage.textContent = "";
+
+
+        /* Disable button */
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    "/admin/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                email: email,
+                                password: password
+                            })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            /* Successful login */
+
+            if (
+                response.ok &&
+                data.success
+            ) {
+
+                window.location.href =
+                    "/admin";
+
+                return;
+            }
+
+
+            /* Login failed */
+
+            errorMessage.textContent =
+                data.message ||
+                "Invalid email or password.";
+
+            errorMessage.classList.add(
+                "show"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+
+            errorMessage.textContent =
+                "Unable to connect to the server.";
+
+            errorMessage.classList.add(
+                "show"
+            );
+
+
+        } finally {
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Login to Dashboard";
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

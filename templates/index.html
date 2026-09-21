@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HABARSH | Jewellery Made For Someone Special</title>
+
+    <meta
+        name="description"
+        content="HABARSH Jewellery — timeless, elegant jewellery made for every special moment."
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Razorpay -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<!-- =====================================================
+     PAGE LOADER
+===================================================== -->
+
+<div id="pageLoader" class="page-loader">
+    <div class="loader-logo">
+        HABARSH
+        <span>JEWELLERY</span>
+    </div>
+    <div class="loader-line"></div>
+</div>
+
+
+<!-- =====================================================
+     ANNOUNCEMENT
+===================================================== -->
+
+<div class="announcement">
+    <span>FREE SHIPPING ON ORDERS ABOVE ₹999</span>
+    <span class="announcement-dot">•</span>
+    <span>CURATED WITH LOVE</span>
+</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="luxury-hero" id="home">
+
+    <!-- Large background model image -->
+    <div class="hero-photo">
+        <img
+            src="https://images.pexels.com/photos/6154083/pexels-photo-6154083.jpeg?auto=compress&dpr=1&w=1800"
+            alt="Woman wearing delicate jewellery"
+        >
+    </div>
+
+    <!-- Luxury gradient -->
+    <div class="hero-overlay"></div>
+
+
+    <!-- TOP NAVBAR -->
+
+    <header class="luxury-nav">
+
+        <div class="currency">
+            INR <span>⌄</span>
+        </div>
+
+
+        <a href="#home" class="luxury-logo">
+            HABARSH
+            <small>JEWELLERY</small>
+        </a>
+
+
+        <div class="nav-actions">
+
+            <button
+                type="button"
+                class="nav-icon"
+                id="searchButton"
+                aria-label="Search"
+            >
+                ⌕
+            </button>
+
+            <button
+                type="button"
+                class="nav-icon"
+                aria-label="Account"
+                onclick="openAccountMessage()"
+            >
+                ♙
+            </button>
+
+            <button
+                type="button"
+                class="mini-cart"
+                onclick="openCart()"
+                aria-label="Shopping cart"
+            >
+                ♡
+                <span id="cartCount">0</span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAV LINKS -->
+
+    <nav class="luxury-links">
+
+        <a href="#shop">SHOP</a>
+        <a href="#collections">COLLECTIONS</a>
+        <a href="#about">ABOUT US</a>
+        <a href="#gifting">GIFTING</a>
+        <a href="#contact">CONTACT</a>
+
+    </nav>
+
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-content">
+
+        <span class="hero-kicker">
+            CRAFTED TO BE CHERISHED FOREVER
+        </span>
+
+        <h1>
+            Jewellery for the
+            <br>
+            <em>Modern You</em>
+        </h1>
+
+        <p>
+            Timeless designs. Finest craftsmanship.
+            <br>
+            Made to celebrate every you.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="#shop" class="luxury-btn">
+                SHOP COLLECTION
+                <span>→</span>
+            </a>
+
+            <a href="#collections" class="text-btn">
+                EXPLORE MORE
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>01</strong>
+                <span>Everyday<br>Luxury</span>
+            </div>
+
+            <div>
+                <strong>02</strong>
+                <span>Made for<br>Every Moment</span>
+            </div>
+
+            <div>
+                <strong>03</strong>
+                <span>Gift<br>Ready</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO SIDE -->
+
+    <div class="hero-side-text">
+
+        <span>01</span>
+
+        <div></div>
+
+        <p>
+            EVERYDAY<br>
+            LUXURY
+        </p>
+
+    </div>
+
+
+    <!-- SCROLL -->
+
+    <div class="hero-bottom">
+
+        <span>SCROLL TO DISCOVER</span>
+
+        <div class="scroll-line"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TRUST BAR
+===================================================== -->
+
+<section class="luxury-trust">
+
+    <div class="trust-item">
+
+        <span class="trust-icon">◇</span>
+
+        <div>
+            <strong>QUALITY JEWELLERY</strong>
+            <small>Carefully selected pieces</small>
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <span class="trust-icon">♧</span>
+
+        <div>
+            <strong>GIFT WRAPPING</strong>
+            <small>Beautifully packed for you</small>
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <span class="trust-icon">♡</span>
+
+        <div>
+            <strong>SECURE PAYMENTS</strong>
+            <small>Safe & secure checkout</small>
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <span class="trust-icon">◯</span>
+
+        <div>
+            <strong>HABARSH SUPPORT</strong>
+            <small>We're here to help</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SHOP
+===================================================== -->
+
+<section class="shop-section" id="shop">
+
+    <div class="section-heading">
+
+        <span>THE HABARSH EDIT</span>
+
+        <h2>
+            Find Something
+            <em>Beautiful</em>
+        </h2>
+
+        <p>
+            Delicate pieces designed to become part of your story.
+        </p>
+
+    </div>
+
+
+    <!-- CATEGORY FILTER -->
+
+    <div class="category-filter">
+
+        <button
+            class="category-btn active"
+            data-category="all"
+        >
+            ALL
+        </button>
+
+        <button
+            class="category-btn"
+            data-category="jhumkas"
+        >
+            JHUMKAS
+        </button>
+
+        <button
+            class="category-btn"
+            data-category="bangles"
+        >
+            BANGLES
+        </button>
+
+        <button
+            class="category-btn"
+            data-category="pendants"
+        >
+            PENDANTS
+        </button>
+
+        <button
+            class="category-btn"
+            data-category="earrings"
+        >
+            EARRINGS
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        class="product-grid"
+        id="productGrid"
+    ></div>
+
+
+    <div
+        id="productLoading"
+        class="product-loading"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EDITORIAL
+===================================================== -->
+
+<section class="editorial-section">
+
+    <div class="editorial-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1400&q=90"
+            alt="Elegant jewellery"
+        >
+
+    </div>
+
+
+    <div class="editorial-content">
+
+        <span>THE ART OF EVERYDAY LUXURY</span>
+
+        <h2>
+            Made to be
+            <em>remembered.</em>
+        </h2>
+
+        <p>
+            Jewellery is more than an accessory.
+            It carries memories, emotions and moments
+            that deserve to stay with you.
+        </p>
+
+        <a
+            href="#about"
+            class="editorial-link"
+        >
+            DISCOVER OUR STORY
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     COLLECTIONS
+===================================================== -->
+
+<section
+    class="collection-section"
+    id="collections"
+>
+
+    <div class="section-heading">
+
+        <span>DISCOVER YOUR STYLE</span>
+
+        <h2>
+            Shop by
+            <em>Collection</em>
+        </h2>
+
+        <p>
+            From subtle everyday pieces to something unforgettable.
+        </p>
+
+        <div class="heading-line">
+            <i></i>
+        </div>
+
+    </div>
+
+
+    <div class="collection-grid">
+
+
+        <!-- RINGS -->
+
+        <a
+            href="#shop"
+            class="collection-card"
+            data-collection="rings"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=90"
+                alt="Rings"
+            >
+
+            <div class="collection-overlay">
+
+                <span>01</span>
+
+                <h3>Rings</h3>
+
+                <p>
+                    Timeless & Elegant
+                </p>
+
+                <strong>
+                    EXPLORE →
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <!-- EARRINGS -->
+
+        <a
+            href="#shop"
+            class="collection-card"
+            data-collection="earrings"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=90"
+                alt="Earrings"
+            >
+
+            <div class="collection-overlay">
+
+                <span>02</span>
+
+                <h3>Earrings</h3>
+
+                <p>
+                    Grace in Every Detail
+                </p>
+
+                <strong>
+                    EXPLORE →
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <!-- BRACELETS -->
+
+        <a
+            href="#shop"
+            class="collection-card"
+            data-collection="bangles"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=90"
+                alt="Bracelets"
+            >
+
+            <div class="collection-overlay">
+
+                <span>03</span>
+
+                <h3>Bracelets</h3>
+
+                <p>
+                    Subtle. Stunning. Yours.
+                </p>
+
+                <strong>
+                    EXPLORE →
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <!-- NECKLACES -->
+
+        <a
+            href="#shop"
+            class="collection-card"
+            data-collection="pendants"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=90"
+                alt="Necklaces"
+            >
+
+            <div class="collection-overlay">
+
+                <span>04</span>
+
+                <h3>Necklaces</h3>
+
+                <p>
+                    Designed to Dazzle
+                </p>
+
+                <strong>
+                    EXPLORE →
+                </strong>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+    <a
+        href="#shop"
+        class="outline-btn"
+    >
+        VIEW ALL COLLECTIONS
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     GIFTING
+===================================================== -->
+
+<section
+    class="gifting-section"
+    id="gifting"
+>
+
+    <div class="gifting-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1300&q=90"
+            alt="Jewellery gift"
+        >
+
+    </div>
+
+
+    <div class="gifting-content">
+
+        <span>FOR SOMEONE SPECIAL</span>
+
+        <h2>
+            Give a little
+            <em>love.</em>
+        </h2>
+
+        <p>
+            Some gifts are opened once.
+            Some become memories forever.
+        </p>
+
+
+        <div class="gift-options">
+
+            <a
+                href="#shop"
+                class="gift-card"
+            >
+                <span>FOR HER</span>
+                <strong>→</strong>
+            </a>
+
+            <a
+                href="#shop"
+                class="gift-card"
+            >
+                <span>FOR YOUR LOVE</span>
+                <strong>→</strong>
+            </a>
+
+            <a
+                href="#shop"
+                class="gift-card"
+            >
+                <span>JUST FOR YOU</span>
+                <strong>→</strong>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+    <div class="about-content">
+
+        <span>OUR STORY</span>
+
+        <h2>
+            Jewellery with
+            <em>meaning.</em>
+        </h2>
+
+        <p>
+            HABARSH was created for the moments that deserve
+            something beautiful. From everyday elegance to
+            thoughtful gifting, every piece is chosen to feel
+            personal, timeless and effortlessly yours.
+        </p>
+
+        <div class="about-signature">
+            HABARSH
+        </div>
+
+    </div>
+
+
+    <div class="about-number">
+        01
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NEWSLETTER
+===================================================== -->
+
+<section class="newsletter-section">
+
+    <div>
+
+        <span>THE HABARSH JOURNAL</span>
+
+        <h2>
+            A little beauty,
+            <em>in your inbox.</em>
+        </h2>
+
+        <p>
+            Get first access to new pieces, gifting ideas
+            and special moments from HABARSH.
+        </p>
+
+    </div>
+
+
+    <form
+        class="newsletter-form"
+        onsubmit="subscribeNewsletter(event)"
+    >
+
+        <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Your email address"
+            required
+        >
+
+        <button type="submit">
+            JOIN US →
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="contact-section"
+    id="contact"
+>
+
+    <div class="contact-heading">
+
+        <span>WE'RE HERE FOR YOU</span>
+
+        <h2>
+            Let's talk
+            <em>jewellery.</em>
+        </h2>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <div>
+            <small>EMAIL</small>
+            <p>hello@habarsh.com</p>
+        </div>
+
+        <div>
+            <small>SUPPORT</small>
+            <p>Mon – Sat · 10AM – 7PM</p>
+        </div>
+
+        <div>
+            <small>FOLLOW</small>
+            <p>@habarshjewellery</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+
+        <div class="footer-logo">
+            HABARSH
+            <small>JEWELLERY</small>
+        </div>
+
+        <p>
+            Jewellery made for someone special.
+        </p>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>SHOP</h4>
+
+        <a href="#shop">Jhumkas</a>
+        <a href="#shop">Bangles</a>
+        <a href="#shop">Pendants</a>
+        <a href="#shop">Earrings</a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>DISCOVER</h4>
+
+        <a href="#collections">Collections</a>
+        <a href="#gifting">Gifting</a>
+        <a href="#about">Our Story</a>
+        <a href="#contact">Contact</a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>HELP</h4>
+
+        <a href="#contact">Shipping</a>
+        <a href="#contact">Returns</a>
+        <a href="#contact">Support</a>
+        <a href="#contact">FAQs</a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 HABARSH JEWELLERY
+        </span>
+
+        <span>
+            MADE WITH LOVE
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     CART OVERLAY
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="cartOverlay"
+>
+
+    <aside
+        class="cart-sidebar"
+        id="cartSidebar"
+    >
+
+        <div class="cart-header">
+
+            <div>
+                <span>YOUR SELECTION</span>
+                <h2>Your Cart</h2>
+            </div>
+
+            <button
+                type="button"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        ></div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-total-row">
+
+                <span>SUBTOTAL</span>
+
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <p class="cart-note">
+                Shipping and taxes calculated at checkout.
+            </p>
+
+
+            <button
+                type="button"
+                id="checkoutButton"
+                class="checkout-btn"
+                onclick="openOrderModal()"
+            >
+                PROCEED TO CHECKOUT
+            </button>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+<!-- =====================================================
+     ORDER MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="orderModal"
+>
+
+    <div class="order-modal">
+
+        <button
+            type="button"
+            class="modal-close"
+            onclick="closeOrderModal()"
+        >
+            ×
+        </button>
+
+
+        <div class="order-heading">
+
+            <span>YOUR ORDER</span>
+
+            <h2>
+                Complete your
+                <em>purchase.</em>
+            </h2>
+
+        </div>
+
+
+        <div
+            class="order-summary"
+            id="orderSummaryItems"
+        ></div>
+
+
+        <div class="order-total">
+
+            <span>TOTAL</span>
+
+            <strong id="orderTotal">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <form id="orderForm">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label for="customerName">
+                        FULL NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        required
+                        placeholder="Your name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        PHONE
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        required
+                        placeholder="10 digit mobile number"
+                        maxlength="10"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        EMAIL
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        required
+                        placeholder="you@example.com"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="giftFor">
+                        GIFT FOR
+                    </label>
+
+                    <select id="giftFor">
+
+                        <option value="Myself">
+                            Myself
+                        </option>
+
+                        <option value="Her">
+                            Her
+                        </option>
+
+                        <option value="Him">
+                            Him
+                        </option>
+
+                        <option value="Someone Special">
+                            Someone Special
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="address">
+                        DELIVERY ADDRESS
+                    </label>
+
+                    <textarea
+                        id="address"
+                        required
+                        placeholder="House no., street, city, state, pincode"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="personalMessage">
+                        PERSONAL MESSAGE
+                        <span>OPTIONAL</span>
+                    </label>
+
+                    <textarea
+                        id="personalMessage"
+                        placeholder="Add a little message..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT -->
+
+            <div class="payment-section">
+
+                <span class="payment-label">
+                    PAYMENT METHOD
+                </span>
+
+
+                <label class="payment-option active">
+
+                    <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="RAZORPAY"
+                        checked
+                    >
+
+                    <span class="payment-custom"></span>
+
+                    <div>
+                        <strong>
+                            Online Payment
+                        </strong>
+
+                        <small>
+                            UPI · Cards · Netbanking · Wallets
+                        </small>
+                    </div>
+
+                    <b>₹</b>
+
+                </label>
+
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="COD"
+                    >
+
+                    <span class="payment-custom"></span>
+
+                    <div>
+                        <strong>
+                            Cash on Delivery
+                        </strong>
+
+                        <small>
+                            Pay when your jewellery arrives
+                        </small>
+                    </div>
+
+                    <b>COD</b>
+
+                </label>
+
+            </div>
+
+
+            <p
+                class="payment-note"
+                id="paymentNote"
+            >
+                Secure checkout powered by Razorpay.
+            </p>
+
+
+            <button
+                type="submit"
+                id="payButton"
+                class="pay-button"
+            >
+
+                <span id="payButtonText">
+                    PAY SECURELY WITH RAZORPAY
+                </span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SUCCESS MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="successModal"
+>
+
+    <div class="success-modal">
+
+        <div class="success-symbol">
+            ✓
+        </div>
+
+        <span>ORDER CONFIRMED</span>
+
+        <h2>
+            Thank you for choosing
+            <em>HABARSH.</em>
+        </h2>
+
+        <p>
+            Your jewellery is now on its way
+            to becoming part of a beautiful memory.
+        </p>
+
+        <div class="success-order">
+
+            ORDER NUMBER
+
+            <strong id="successOrderNumber">
+                —
+            </strong>
+
+        </div>
+
+        <button
+            type="button"
+            onclick="closeSuccessModal()"
+            class="success-btn"
+        >
+            CONTINUE SHOPPING
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SEARCH MODAL
+===================================================== -->
+
+<div
+    class="search-overlay"
+    id="searchOverlay"
+>
+
+    <div class="search-box">
+
+        <button
+            type="button"
+            class="search-close"
+            onclick="closeSearch()"
+        >
+            ×
+        </button>
+
+        <span>SEARCH HABARSH</span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search jewellery..."
+        >
+
+        <div id="searchResults"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+</body>
+</html>

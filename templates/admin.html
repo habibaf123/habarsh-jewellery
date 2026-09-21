@@ -1,0 +1,3220 @@
+=<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HABARSH | Admin Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f1eb;
+            color: #241817;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            background: #171010;
+            color: white;
+            padding: 20px 6%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 4px 20px rgba(0,0,0,.15);
+        }
+
+        .logo {
+            color: #d5a258;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .admin-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-label {
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            border: 1px solid #b7863d;
+            background: transparent;
+            color: #d5a258;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #b7863d;
+            color: white;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: 88%;
+            max-width: 1400px;
+            margin: 35px auto;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 32px;
+            margin-bottom: 7px;
+        }
+
+        .page-title p {
+            color: #777;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 23px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.07);
+        }
+
+        .stat-card span {
+            display: block;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card strong {
+            font-size: 28px;
+            color: #b7863d;
+        }
+
+
+        /* =========================
+           SECTION BOX
+        ========================= */
+
+        .section-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.07);
+
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .section-header h2 {
+            font-size: 21px;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .primary-btn {
+            border: none;
+            background: #171010;
+            color: white;
+
+            padding: 11px 17px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .primary-btn:hover {
+            background: #b7863d;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box input,
+        .search-box select {
+            padding: 11px 13px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            background: white;
+        }
+
+        .search-box input {
+            width: 230px;
+        }
+
+        .search-box input:focus,
+        .search-box select:focus {
+            border-color: #b7863d;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 950px;
+        }
+
+        th,
+        td {
+            padding: 14px;
+
+            text-align: left;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f3ed;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            display: inline-block;
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            background: #eee;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           ACTION BUTTONS
+        ========================= */
+
+        .action-btn {
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            margin-right: 4px;
+        }
+
+        .view-btn {
+            background: #171010;
+            color: white;
+        }
+
+        .view-btn:hover {
+            background: #b7863d;
+        }
+
+        .edit-btn {
+            background: #171010;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #b7863d;
+        }
+
+        .delete-btn {
+            background: #f2dddd;
+            color: #8d1b1b;
+        }
+
+        .delete-btn:hover {
+            background: #8d1b1b;
+            color: white;
+        }
+
+
+        /* =========================
+           PRODUCT IMAGE
+        ========================= */
+
+        .product-image {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 8px;
+
+            object-fit: cover;
+
+            background: #f4eee8;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+
+        /* =========================
+           STOCK
+        ========================= */
+
+        .stock {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 15px;
+
+            background: #eee;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        .stock-low {
+            background: #fff0d2;
+            color: #956300;
+        }
+
+        .stock-out {
+            background: #ffe0e0;
+            color: #a00000;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
+            text-align: center;
+
+            padding: 50px;
+
+            color: #888;
+        }
+
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,.65);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+
+            width: 100%;
+
+            max-width: 680px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            border-radius: 14px;
+
+            padding: 28px;
+
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+
+            right: 18px;
+
+            top: 15px;
+
+            border: none;
+
+            background: none;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            color: #777;
+        }
+
+        .modal-title {
+            margin-bottom: 22px;
+
+            padding-right: 30px;
+        }
+
+        .modal-title h2 {
+            margin-bottom: 5px;
+        }
+
+        .modal-title p {
+            color: #888;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .input-box {
+            margin-bottom: 15px;
+        }
+
+        .input-box label {
+            display: block;
+
+            font-size: 11px;
+
+            color: #777;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+        }
+
+        .input-box input,
+        .input-box select,
+        .input-box textarea {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            background: white;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .input-box input:focus,
+        .input-box select:focus,
+        .input-box textarea:focus {
+            border-color: #b7863d;
+        }
+
+        .checkbox-row {
+            display: flex;
+
+            gap: 25px;
+
+            margin: 10px 0 20px;
+        }
+
+        .checkbox-row label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            font-size: 13px;
+        }
+
+        .checkbox-row input {
+            accent-color: #b7863d;
+        }
+
+        .save-btn {
+            width: 100%;
+
+            border: none;
+
+            background: #171010;
+
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .save-btn:hover {
+            background: #b7863d;
+        }
+
+
+        /* =========================
+           ORDER MODAL
+        ========================= */
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .info-box {
+            background: #f8f3ed;
+
+            padding: 15px;
+
+            border-radius: 8px;
+        }
+
+        .info-box small {
+            display: block;
+
+            color: #888;
+
+            margin-bottom: 6px;
+
+            font-size: 11px;
+        }
+
+        .info-box strong {
+            font-size: 14px;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           ORDER PRODUCTS
+        ========================= */
+
+        .product-list {
+            border-top: 1px solid #eee;
+
+            border-bottom: 1px solid #eee;
+
+            margin: 20px 0;
+        }
+
+        .product-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-row:last-child {
+            border-bottom: none;
+        }
+
+        .product-name {
+            font-weight: bold;
+        }
+
+        .product-quantity {
+            color: #888;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           TOTAL
+        ========================= */
+
+        .total-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin: 20px 0;
+        }
+
+
+        /* =========================
+           STATUS UPDATE
+        ========================= */
+
+        .status-update {
+            background: #f8f3ed;
+
+            padding: 18px;
+
+            border-radius: 9px;
+
+            margin-top: 20px;
+        }
+
+        .status-update label {
+            display: block;
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+
+            color: #777;
+        }
+
+        .status-update select {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 6px;
+
+            background: white;
+
+            margin-bottom: 12px;
+        }
+
+        .update-btn {
+            width: 100%;
+
+            border: none;
+
+            background: #171010;
+
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .update-btn:hover {
+            background: #b7863d;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .container {
+                width: 93%;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 18px 5%;
+            }
+
+            .admin-label {
+                display: none;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .search-box {
+                width: 100%;
+
+                flex-direction: column;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .search-box select {
+                width: 100%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-row {
+                flex-direction: column;
+
+                gap: 12px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="logo">
+        HABARSH
+    </div>
+
+    <div class="admin-right">
+
+        <div class="admin-label">
+            Admin Dashboard
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="logoutAdmin()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <div class="page-title">
+
+        <h1>
+            Dashboard
+        </h1>
+
+        <p>
+            Manage your HABARSH jewellery store.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <span>
+                Total Orders
+            </span>
+
+            <strong id="totalOrders">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                Total Sales
+            </span>
+
+            <strong id="totalSales">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                Pending Orders
+            </span>
+
+            <strong id="pendingOrders">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                Delivered Orders
+            </span>
+
+            <strong id="deliveredOrders">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ORDERS
+    ================================================== -->
+
+    <section class="section-box">
+
+        <div class="section-header">
+
+            <h2>
+                Orders
+            </h2>
+
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search order or customer..."
+                    oninput="filterOrders()"
+                >
+
+
+                <select
+                    id="statusFilter"
+                    onchange="filterOrders()"
+                >
+
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Confirmed">
+                        Confirmed
+                    </option>
+
+                    <option value="Packed">
+                        Packed
+                    </option>
+
+                    <option value="Shipped">
+                        Shipped
+                    </option>
+
+                    <option value="Delivered">
+                        Delivered
+                    </option>
+
+                    <option value="Cancelled">
+                        Cancelled
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div id="ordersContainer">
+
+            <div class="empty">
+                Loading orders...
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PRODUCT MANAGEMENT
+    ================================================== -->
+
+    <section class="section-box">
+
+        <div class="section-header">
+
+            <h2>
+                Product Management
+            </h2>
+
+
+            <button
+                class="primary-btn"
+                onclick="openProductModal()"
+            >
+                + Add Product
+            </button>
+
+        </div>
+
+
+        <div id="productsContainer">
+
+            <div class="empty">
+                Loading products...
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     ORDER DETAILS MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="orderModal"
+>
+
+    <div class="modal-box">
+
+
+        <button
+            class="modal-close"
+            onclick="closeOrderModal()"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-title">
+
+            <h2>
+                Order Details
+            </h2>
+
+            <p id="modalOrderNumber">
+                Order ID
+            </p>
+
+        </div>
+
+
+        <!-- CUSTOMER -->
+
+        <div class="info-grid">
+
+
+            <div class="info-box">
+
+                <small>
+                    CUSTOMER
+                </small>
+
+                <strong id="modalCustomer">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    PHONE
+                </small>
+
+                <strong id="modalPhone">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    EMAIL
+                </small>
+
+                <strong id="modalEmail">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    GIFT FOR
+                </small>
+
+                <strong id="modalGiftFor">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div
+                class="info-box"
+                style="grid-column:1/-1;"
+            >
+
+                <small>
+                    DELIVERY ADDRESS
+                </small>
+
+                <strong id="modalAddress">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div
+                class="info-box"
+                style="grid-column:1/-1;"
+            >
+
+                <small>
+                    PERSONAL MESSAGE
+                </small>
+
+                <strong id="modalMessage">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <h3>
+            Products
+        </h3>
+
+
+        <div
+            class="product-list"
+            id="modalProducts"
+        >
+        </div>
+
+
+        <div class="total-row">
+
+            <span>
+                Total
+            </span>
+
+            <span id="modalTotal">
+                ₹0
+            </span>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="info-grid">
+
+
+            <div class="info-box">
+
+                <small>
+                    PAYMENT METHOD
+                </small>
+
+                <strong id="modalPaymentMethod">
+                    COD
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    PAYMENT STATUS
+                </small>
+
+                <strong id="modalPayment">
+                    Pending
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    ORDER STATUS
+                </small>
+
+                <strong id="modalCurrentStatus">
+                    Pending
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="status-update">
+
+            <label>
+                Change Order Status
+            </label>
+
+
+            <select id="modalStatus">
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Confirmed">
+                    Confirmed
+                </option>
+
+                <option value="Packed">
+                    Packed
+                </option>
+
+                <option value="Shipped">
+                    Shipped
+                </option>
+
+                <option value="Delivered">
+                    Delivered
+                </option>
+
+                <option value="Cancelled">
+                    Cancelled
+                </option>
+
+            </select>
+
+
+            <button
+                class="update-btn"
+                onclick="updateOrderStatus()"
+            >
+                Update Status
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     PRODUCT MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="productModal"
+>
+
+    <div class="modal-box">
+
+
+        <button
+            class="modal-close"
+            onclick="closeProductModal()"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-title">
+
+            <h2 id="productModalTitle">
+                Add Product
+            </h2>
+
+            <p>
+                Add or edit products for your HABARSH store.
+            </p>
+
+        </div>
+
+
+        <div class="form-grid">
+
+
+            <div class="input-box">
+
+                <label>
+                    PRODUCT NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Royal Pearl Jhumka"
+                >
+
+            </div>
+
+
+            <div class="input-box">
+
+                <label>
+                    CATEGORY
+                </label>
+
+                <select id="productCategory">
+
+                    <option value="Jhumka">
+                        Jhumka
+                    </option>
+
+                    <option value="Bangles">
+                        Bangles
+                    </option>
+
+                    <option value="Pendants">
+                        Pendants
+                    </option>
+
+                    <option value="Earrings">
+                        Earrings
+                    </option>
+
+                    <option value="Rings">
+                        Rings
+                    </option>
+
+                    <option value="Necklace">
+                        Necklace
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-box">
+
+                <label>
+                    PRICE ₹
+                </label>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="899"
+                    min="1"
+                >
+
+            </div>
+
+
+            <div class="input-box">
+
+                <label>
+                    OLD PRICE ₹
+                </label>
+
+                <input
+                    type="number"
+                    id="productOldPrice"
+                    placeholder="1299"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="input-box">
+
+                <label>
+                    STOCK
+                </label>
+
+                <input
+                    type="number"
+                    id="productStock"
+                    placeholder="20"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="input-box">
+
+                <label>
+                    IMAGE URL
+                </label>
+
+                <input
+                    type="text"
+                    id="productImage"
+                    placeholder="https://example.com/image.jpg"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label>
+                DESCRIPTION
+            </label>
+
+            <textarea
+                id="productDescription"
+                rows="4"
+                placeholder="Write product description..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="checkbox-row">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="productActive"
+                    checked
+                >
+
+                Active Product
+
+            </label>
+
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="productFeatured"
+                >
+
+                Featured Product
+
+            </label>
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            id="saveProductButton"
+            onclick="saveProduct()"
+        >
+            Save Product
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let allOrders = [];
+
+let selectedOrderId = null;
+
+let allProducts = [];
+
+let editingProductId = null;
+
+
+/* =====================================================
+   LOAD ORDERS
+===================================================== */
+
+async function loadOrders() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/admin/orders"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "API request failed"
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "Unable to load orders"
+            );
+        }
+
+
+        allOrders =
+            data.orders || [];
+
+
+        updateStatistics();
+
+        displayOrders(
+            allOrders
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Dashboard error:",
+            error
+        );
+
+
+        document.getElementById(
+            "ordersContainer"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                Unable to load orders.
+
+                <br><br>
+
+                Please check the Flask server.
+
+            </div>
+
+        `;
+    }
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+function updateStatistics() {
+
+    document.getElementById(
+        "totalOrders"
+    ).textContent =
+        allOrders.length;
+
+
+    let sales = 0;
+
+    let pending = 0;
+
+    let delivered = 0;
+
+
+    allOrders.forEach(
+        function(order) {
+
+            sales += Number(
+                order.totalAmount || 0
+            );
+
+
+            if (
+                order.orderStatus ===
+                "Pending"
+            ) {
+
+                pending++;
+
+            }
+
+
+            if (
+                order.orderStatus ===
+                "Delivered"
+            ) {
+
+                delivered++;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalSales"
+    ).textContent =
+        "₹" +
+        sales.toLocaleString(
+            "en-IN"
+        );
+
+
+    document.getElementById(
+        "pendingOrders"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "deliveredOrders"
+    ).textContent =
+        delivered;
+}
+
+
+/* =====================================================
+   DISPLAY ORDERS
+===================================================== */
+
+function displayOrders(
+    orders
+) {
+
+    const container =
+        document.getElementById(
+            "ordersContainer"
+        );
+
+
+    if (
+        orders.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+                No orders found.
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    let html = `
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Order ID
+                        </th>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th>
+                            Phone
+                        </th>
+
+                        <th>
+                            Products
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Payment
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+    `;
+
+
+    orders.forEach(
+        function(order) {
+
+
+            const products =
+                order.products || [];
+
+
+            let productText = "";
+
+
+            products.forEach(
+                function(product) {
+
+                    productText +=
+
+                        product.name +
+
+                        " × " +
+
+                        product.quantity +
+
+                        "<br>";
+
+                }
+            );
+
+
+            const paymentStatus =
+
+                order.payment &&
+                order.payment.status
+
+                    ? order.payment.status
+
+                    : "Pending";
+
+
+            html += `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            ${order.orderNumber || "N/A"}
+                        </strong>
+
+                    </td>
+
+
+                    <td>
+                        ${order.customer?.name || "N/A"}
+                    </td>
+
+
+                    <td>
+                        ${order.customer?.phone || "N/A"}
+                    </td>
+
+
+                    <td>
+                        ${productText || "N/A"}
+                    </td>
+
+
+                    <td>
+
+                        ₹${Number(
+                            order.totalAmount || 0
+                        ).toLocaleString(
+                            "en-IN"
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="status">
+                            ${paymentStatus}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="status">
+                            ${order.orderStatus || "Pending"}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+                            class="action-btn view-btn"
+                            onclick="
+                                openOrderModal(
+                                    '${order._id}'
+                                )
+                            "
+                        >
+                            View
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+}
+
+
+/* =====================================================
+   FILTER ORDERS
+===================================================== */
+
+function filterOrders() {
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const filtered =
+        allOrders.filter(
+            function(order) {
+
+
+                const orderNumber =
+                    (
+                        order.orderNumber ||
+                        ""
+                    ).toLowerCase();
+
+
+                const customerName =
+                    (
+                        order.customer?.name ||
+                        ""
+                    ).toLowerCase();
+
+
+                const phone =
+                    (
+                        order.customer?.phone ||
+                        ""
+                    ).toLowerCase();
+
+
+                const matchesSearch =
+
+                    orderNumber.includes(
+                        search
+                    )
+
+                    ||
+
+                    customerName.includes(
+                        search
+                    )
+
+                    ||
+
+                    phone.includes(
+                        search
+                    );
+
+
+                const matchesStatus =
+
+                    status === "All"
+
+                    ||
+
+                    order.orderStatus ===
+                    status;
+
+
+                return (
+                    matchesSearch &&
+                    matchesStatus
+                );
+
+            }
+        );
+
+
+    displayOrders(
+        filtered
+    );
+}
+
+
+/* =====================================================
+   OPEN ORDER MODAL
+===================================================== */
+
+function openOrderModal(
+    orderId
+) {
+
+    const order =
+        allOrders.find(
+            function(item) {
+
+                return item._id ===
+                    orderId;
+
+            }
+        );
+
+
+    if (!order) {
+
+        alert(
+            "Order not found."
+        );
+
+        return;
+    }
+
+
+    selectedOrderId =
+        orderId;
+
+
+    document.getElementById(
+        "modalOrderNumber"
+    ).textContent =
+        order.orderNumber ||
+        "N/A";
+
+
+    document.getElementById(
+        "modalCustomer"
+    ).textContent =
+        order.customer?.name ||
+        "N/A";
+
+
+    document.getElementById(
+        "modalPhone"
+    ).textContent =
+        order.customer?.phone ||
+        "N/A";
+
+
+    document.getElementById(
+        "modalEmail"
+    ).textContent =
+        order.customer?.email ||
+        "Not provided";
+
+
+    document.getElementById(
+        "modalGiftFor"
+    ).textContent =
+        order.giftFor ||
+        "Not specified";
+
+
+    document.getElementById(
+        "modalAddress"
+    ).textContent =
+        order.address ||
+        "N/A";
+
+
+    document.getElementById(
+        "modalMessage"
+    ).textContent =
+        order.personalMessage ||
+        "No personal message";
+
+
+    document.getElementById(
+        "modalPaymentMethod"
+    ).textContent =
+        order.payment?.method ||
+        "COD";
+
+
+    document.getElementById(
+        "modalPayment"
+    ).textContent =
+        order.payment?.status ||
+        "Pending";
+
+
+    const currentStatus =
+        order.orderStatus ||
+        "Pending";
+
+
+    document.getElementById(
+        "modalCurrentStatus"
+    ).textContent =
+        currentStatus;
+
+
+    document.getElementById(
+        "modalStatus"
+    ).value =
+        currentStatus;
+
+
+    /* PRODUCTS */
+
+    const productsContainer =
+        document.getElementById(
+            "modalProducts"
+        );
+
+
+    let productsHTML = "";
+
+
+    (
+        order.products || []
+    ).forEach(
+        function(product) {
+
+            productsHTML += `
+
+                <div class="product-row">
+
+                    <div>
+
+                        <div class="product-name">
+                            ${product.name}
+                        </div>
+
+                        <div class="product-quantity">
+
+                            Quantity:
+                            ${product.quantity}
+
+                        </div>
+
+                    </div>
+
+
+                    <strong>
+
+                        ₹${Number(
+                            product.lineTotal || 0
+                        ).toLocaleString(
+                            "en-IN"
+                        )}
+
+                    </strong>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    productsContainer.innerHTML =
+
+        productsHTML ||
+
+        "<p>No products.</p>";
+
+
+    document.getElementById(
+        "modalTotal"
+    ).textContent =
+
+        "₹" +
+
+        Number(
+            order.totalAmount || 0
+        ).toLocaleString(
+            "en-IN"
+        );
+
+
+    document.getElementById(
+        "orderModal"
+    ).classList.add(
+        "show"
+    );
+}
+
+
+/* =====================================================
+   CLOSE ORDER MODAL
+===================================================== */
+
+function closeOrderModal() {
+
+    document.getElementById(
+        "orderModal"
+    ).classList.remove(
+        "show"
+    );
+
+
+    selectedOrderId =
+        null;
+}
+
+
+/* =====================================================
+   UPDATE ORDER STATUS
+===================================================== */
+
+async function updateOrderStatus() {
+
+    if (!selectedOrderId) {
+
+        alert(
+            "No order selected."
+        );
+
+        return;
+    }
+
+
+    const newStatus =
+        document.getElementById(
+            "modalStatus"
+        ).value;
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                "/api/admin/orders/" +
+                selectedOrderId +
+                "/status",
+
+                {
+
+                    method: "PUT",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            status:
+                                newStatus
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            alert(
+                data.message ||
+                "Could not update status."
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Order status updated successfully!"
+        );
+
+
+        closeOrderModal();
+
+
+        await loadOrders();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Status update error:",
+            error
+        );
+
+
+        alert(
+            "Unable to update order status."
+        );
+    }
+}
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+async function loadProducts() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/admin/products"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data.message ||
+                "Unable to load products."
+            );
+        }
+
+
+        allProducts =
+            data.products || [];
+
+
+        displayProducts(
+            allProducts
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Product error:",
+            error
+        );
+
+
+        document.getElementById(
+            "productsContainer"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                Unable to load products.
+
+                <br><br>
+
+                Please check the Flask server.
+
+            </div>
+
+        `;
+    }
+}
+
+
+/* =====================================================
+   DISPLAY PRODUCTS
+===================================================== */
+
+function displayProducts(
+    productList
+) {
+
+    const container =
+        document.getElementById(
+            "productsContainer"
+        );
+
+
+    if (
+        productList.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+                No products found.
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    let html = `
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Image
+                        </th>
+
+                        <th>
+                            Product
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Price
+                        </th>
+
+                        <th>
+                            Stock
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+    `;
+
+
+    productList.forEach(
+        function(product) {
+
+
+            let stockClass = "";
+
+
+            if (
+                Number(product.stock) ===
+                0
+            ) {
+
+                stockClass =
+                    "stock-out";
+
+            }
+
+            else if (
+                Number(product.stock) <=
+                5
+            ) {
+
+                stockClass =
+                    "stock-low";
+            }
+
+
+            let imageHTML = "";
+
+
+            if (product.image) {
+
+                imageHTML = `
+
+                    <img
+                        src="${product.image}"
+                        class="product-image"
+                        onerror="
+                            this.style.display='none'
+                        "
+                    >
+
+                `;
+
+            }
+
+            else {
+
+                imageHTML = `
+
+                    <div class="product-image">
+                        💎
+                    </div>
+
+                `;
+            }
+
+
+            html += `
+
+                <tr>
+
+
+                    <td>
+
+                        ${imageHTML}
+
+                    </td>
+
+
+                    <td>
+
+                        <strong>
+                            ${product.name}
+                        </strong>
+
+                        ${
+                            product.featured
+                            ? `
+                                <br>
+
+                                <small
+                                    style="
+                                        color:#b7863d;
+                                        font-weight:bold;
+                                    "
+                                >
+                                    ★ Featured
+                                </small>
+                              `
+                            : ""
+                        }
+
+                    </td>
+
+
+                    <td>
+                        ${product.category || "N/A"}
+                    </td>
+
+
+                    <td>
+
+                        <strong>
+
+                            ₹${Number(
+                                product.price || 0
+                            ).toLocaleString(
+                                "en-IN"
+                            )}
+
+                        </strong>
+
+
+                        ${
+                            product.oldPrice
+                            ? `
+
+                                <br>
+
+                                <small
+                                    style="
+                                        color:#999;
+                                        text-decoration:
+                                            line-through;
+                                    "
+                                >
+
+                                    ₹${Number(
+                                        product.oldPrice
+                                    ).toLocaleString(
+                                        "en-IN"
+                                    )}
+
+                                </small>
+
+                              `
+                            : ""
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="
+                                stock
+                                ${stockClass}
+                            "
+                        >
+
+                            ${product.stock ?? 0}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="status">
+
+                            ${
+                                product.active
+                                ? "Active"
+                                : "Hidden"
+                            }
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+                            class="
+                                action-btn
+                                edit-btn
+                            "
+                            onclick="
+                                editProduct(
+                                    '${product._id}'
+                                )
+                            "
+                        >
+                            Edit
+                        </button>
+
+
+                        <button
+                            class="
+                                action-btn
+                                delete-btn
+                            "
+                            onclick="
+                                deleteProduct(
+                                    '${product._id}'
+                                )
+                            "
+                        >
+                            Remove
+                        </button>
+
+                    </td>
+
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+}
+
+
+/* =====================================================
+   OPEN PRODUCT MODAL
+===================================================== */
+
+function openProductModal() {
+
+    editingProductId =
+        null;
+
+
+    document.getElementById(
+        "productModalTitle"
+    ).textContent =
+        "Add Product";
+
+
+    document.getElementById(
+        "saveProductButton"
+    ).textContent =
+        "Save Product";
+
+
+    document.getElementById(
+        "productName"
+    ).value = "";
+
+
+    document.getElementById(
+        "productCategory"
+    ).value =
+        "Jhumka";
+
+
+    document.getElementById(
+        "productPrice"
+    ).value = "";
+
+
+    document.getElementById(
+        "productOldPrice"
+    ).value = "";
+
+
+    document.getElementById(
+        "productStock"
+    ).value = "";
+
+
+    document.getElementById(
+        "productImage"
+    ).value = "";
+
+
+    document.getElementById(
+        "productDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "productActive"
+    ).checked =
+        true;
+
+
+    document.getElementById(
+        "productFeatured"
+    ).checked =
+        false;
+
+
+    document.getElementById(
+        "productModal"
+    ).classList.add(
+        "show"
+    );
+}
+
+
+/* =====================================================
+   CLOSE PRODUCT MODAL
+===================================================== */
+
+function closeProductModal() {
+
+    document.getElementById(
+        "productModal"
+    ).classList.remove(
+        "show"
+    );
+
+
+    editingProductId =
+        null;
+}
+
+
+/* =====================================================
+   EDIT PRODUCT
+===================================================== */
+
+function editProduct(
+    productId
+) {
+
+    const product =
+        allProducts.find(
+            function(item) {
+
+                return item._id ===
+                    productId;
+
+            }
+        );
+
+
+    if (!product) {
+
+        alert(
+            "Product not found."
+        );
+
+        return;
+    }
+
+
+    editingProductId =
+        productId;
+
+
+    document.getElementById(
+        "productModalTitle"
+    ).textContent =
+        "Edit Product";
+
+
+    document.getElementById(
+        "saveProductButton"
+    ).textContent =
+        "Update Product";
+
+
+    document.getElementById(
+        "productName"
+    ).value =
+        product.name || "";
+
+
+    document.getElementById(
+        "productCategory"
+    ).value =
+        product.category ||
+        "Jhumka";
+
+
+    document.getElementById(
+        "productPrice"
+    ).value =
+        product.price || "";
+
+
+    document.getElementById(
+        "productOldPrice"
+    ).value =
+        product.oldPrice || "";
+
+
+    document.getElementById(
+        "productStock"
+    ).value =
+        product.stock || 0;
+
+
+    document.getElementById(
+        "productImage"
+    ).value =
+        product.image || "";
+
+
+    document.getElementById(
+        "productDescription"
+    ).value =
+        product.description || "";
+
+
+    document.getElementById(
+        "productActive"
+    ).checked =
+        product.active !== false;
+
+
+    document.getElementById(
+        "productFeatured"
+    ).checked =
+        product.featured === true;
+
+
+    document.getElementById(
+        "productModal"
+    ).classList.add(
+        "show"
+    );
+}
+
+
+/* =====================================================
+   SAVE PRODUCT
+===================================================== */
+
+async function saveProduct() {
+
+    const name =
+        document.getElementById(
+            "productName"
+        ).value.trim();
+
+
+    const category =
+        document.getElementById(
+            "productCategory"
+        ).value;
+
+
+    const price =
+        document.getElementById(
+            "productPrice"
+        ).value;
+
+
+    const oldPrice =
+        document.getElementById(
+            "productOldPrice"
+        ).value;
+
+
+    const stock =
+        document.getElementById(
+            "productStock"
+        ).value;
+
+
+    const image =
+        document.getElementById(
+            "productImage"
+        ).value.trim();
+
+
+    const description =
+        document.getElementById(
+            "productDescription"
+        ).value.trim();
+
+
+    const active =
+        document.getElementById(
+            "productActive"
+        ).checked;
+
+
+    const featured =
+        document.getElementById(
+            "productFeatured"
+        ).checked;
+
+
+    if (!name) {
+
+        alert(
+            "Please enter product name."
+        );
+
+        return;
+    }
+
+
+    if (
+        !price ||
+        Number(price) <= 0
+    ) {
+
+        alert(
+            "Please enter a valid price."
+        );
+
+        return;
+    }
+
+
+    if (
+        stock === "" ||
+        Number(stock) < 0
+    ) {
+
+        alert(
+            "Please enter valid stock."
+        );
+
+        return;
+    }
+
+
+    const productData = {
+
+        name: name,
+
+        category: category,
+
+        price: Number(price),
+
+        oldPrice:
+            Number(
+                oldPrice || 0
+            ),
+
+        stock:
+            Number(stock),
+
+        image: image,
+
+        description:
+            description,
+
+        active: active,
+
+        featured: featured
+    };
+
+
+    try {
+
+        let response;
+
+
+        if (editingProductId) {
+
+            response =
+                await fetch(
+
+                    "/api/admin/products/" +
+                    editingProductId,
+
+                    {
+
+                        method: "PUT",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                productData
+                            )
+
+                    }
+
+                );
+
+        }
+
+        else {
+
+            response =
+                await fetch(
+
+                    "/api/admin/products",
+
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                productData
+                            )
+
+                    }
+
+                );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            alert(
+                data.message ||
+                "Unable to save product."
+            );
+
+            return;
+        }
+
+
+        alert(
+
+            editingProductId
+
+            ? "Product updated successfully!"
+
+            : "Product added successfully!"
+
+        );
+
+
+        closeProductModal();
+
+
+        await loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Save product error:",
+            error
+        );
+
+
+        alert(
+            "Unable to save product."
+        );
+    }
+}
+
+
+/* =====================================================
+   REMOVE PRODUCT
+===================================================== */
+
+async function deleteProduct(
+    productId
+) {
+
+    const product =
+        allProducts.find(
+            function(item) {
+
+                return item._id ===
+                    productId;
+
+            }
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `Remove "${product.name}" from the store?`
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                "/api/admin/products/" +
+                productId,
+
+                {
+                    method: "DELETE"
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            alert(
+                data.message ||
+                "Unable to remove product."
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Product removed successfully!"
+        );
+
+
+        await loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete product error:",
+            error
+        );
+
+
+        alert(
+            "Unable to remove product."
+        );
+    }
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logoutAdmin() {
+
+    window.location.href =
+        "/admin/logout";
+}
+
+
+/* =====================================================
+   CLOSE ORDER MODAL OUTSIDE
+===================================================== */
+
+document.getElementById(
+    "orderModal"
+).addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target === this
+        ) {
+
+            closeOrderModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE PRODUCT MODAL OUTSIDE
+===================================================== */
+
+document.getElementById(
+    "productModal"
+).addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target === this
+        ) {
+
+            closeProductModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START DASHBOARD
+===================================================== */
+
+loadOrders();
+
+loadProducts();
+
+</script>
+
+
+</body>
+</html>
